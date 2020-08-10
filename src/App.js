@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { Button } from '@material-ui/core';
+import { Button, FormControl, Input, InputLabel } from '@material-ui/core';
+import Todo from './Todo.js';
 
 function App() {
   const [todos, setTodos] = useState(['Take dogs for a walk', 'Take the trash out']);
@@ -12,16 +13,22 @@ function App() {
     setInput('') //clears the input after clicking todo button to submit
   }
   return (
-   <div className="App" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%'}}>
+   <div className="App">
+    <h1>Todo App Created Using React!</h1> 
     <form>
-        <input value={input} onChange={event => setInput(event.target.value)}></input>
-        <Button type='submit' variant="contained" onClick={addTodo} color="primary">
+        {/* <input value={input} onChange={event => setInput(event.target.value)}></input> */}
+
+        <FormControl>
+          <InputLabel>Write a Todo</InputLabel>
+          <Input value={input} onChange={event => setInput(event.target.value)}/>
+        </FormControl>
+
+        <Button type='submit' variant="contained" onClick={addTodo} color="primary" disabled={!input}>
           Add Todo
           </Button>
-
         <ul>
           {todos.map(todo => (
-            <li>{todo}</li>
+            <Todo text={todo}/>
           ))}
         </ul>
     </form>
