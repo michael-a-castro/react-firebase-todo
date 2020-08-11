@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
+import firebase from 'firebase';
 import { Button, FormControl, Input, InputLabel } from '@material-ui/core';
 import Todo from './Todo.js';
 import db from './firebase';
-import firebase from 'firebase';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -28,10 +28,11 @@ function App() {
     setTodos([...todos, input]);
     setInput('') //clears the input after clicking todo button to submit
   }
+
   return (
-   <div className="App">
-    <h1>Todo App Created Using React & Material UI</h1> 
-    <form>
+   <div className='App'>
+    <h1 style={{display: 'flex', justifyContent: 'center'}}>Todo App Created Using React, Firebase & Material UI</h1> 
+    <form style={{display: 'flex', justifyContent: 'center'}}>
         <FormControl>
           <InputLabel>Write a Todo</InputLabel>
           <Input value={input} onChange={event => setInput(event.target.value)}/>
@@ -39,10 +40,11 @@ function App() {
 
         <Button type='submit' variant="contained" onClick={addTodo} color="primary" disabled={!input}>Add Todo</Button>
     </form>
-
-    <ul>
-          {todos.map(todo => (<Todo todo={todo}/>))}
-    </ul>
+    <div style={{display: 'flex', justifyContent: 'center'}}>
+      <ul>
+            {todos.map(todo => (<Todo todo={todo}/>))}
+      </ul>
+    </div>
    </div>  
   )
 }
