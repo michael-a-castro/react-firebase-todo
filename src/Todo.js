@@ -19,7 +19,6 @@ function Todo(props) {
     const classes = useStyles()
     const [input, setInput] = React.useState();
     const [open, setOpen] = React.useState(false);
-    
     const updateTodo = () => {
         db.collection('todos').doc(props.todo.id).set ({
             todo: input
@@ -35,7 +34,8 @@ function Todo(props) {
         >
             <div className={classes.paper}>
                 <h1>Edit you item</h1>
-                <input placeholder={props.todo.todo} value={input} onChange={event => setInput(event.target.value)}/> 
+                {/* <input placeholder={props.todo.todo} value={input} onChange={event => setInput(event.target.value)}/>  */}
+                <input defaultValue={props.todo.todo} value={input} onChange={event => setInput(event.target.value)}/> 
                 <Button type='submit' onClick={updateTodo}>update</Button>
             </div>
         </Modal>
